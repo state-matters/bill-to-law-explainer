@@ -33,12 +33,14 @@
 
 .left-arrow {
   display: flex;
-  position: relative;
-  right: 45%;
+  position: fixed;
+  right: 50em;
+  bottom: 5em;
 }
 
 .right-arrow {
   display: flex;
-  position: relative;
-  left: 45%;
+  position: fixed;
+  left: 50em;
+  bottom: 5em;
 }
