@@ -1,36 +1,45 @@
-import React, { Component, Fragment } from "react";
-import "../styles/App.css";
-import { STEPS } from "../config";
-import RightArrow from "../components/right_arrow";
-import { LeftArrow } from "../components/left_arrow";
-
-/*
-State:
-  activeStep
-
-Need to handle:
-  onKeyDown:
-    (parse the keycode)
-      rightArrowClick (should go to next step)
-      leftArrowClick (should go to prev step)
-*/
-
-//Add onKeyDown with a componentWillMount function
-//Style the buttons so that they look nice maybe arrows??
-//Split to decide does it go to the house or senate?
+import React, { Component } from "react"
+import "../styles/App.css"
+import { STEPS } from "../config"
+import { LeftArrow, RightArrow } from "./components"
+import { Step } from "./pages"
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context)
     this.state = {
       activeStep: STEPS[0]
-    };
-    this.goNextStep = this.goNextStep.bind(this);
-    this.goPrevStep = this.goPrevStep.bind(this);
+    }
   }
 
-  onClickChangeForward() {
-    console.log("Right button clicked");
+  render() {
+    return (
+      <div className="App">
+        <LeftArrow onClick={this.goPrevStep} title="Previous" />
+        <Step step={this.state.activeStep} handleOnKeyDown={this.onKeyPressed} />
+        <RightArrow onClick={this.goNextStep} title="Next" />
+      </div>
+    )
+  }
+
+  goNextStep = () => {
+    const { activeStep } = this.state
+    const idx = STEPS.map(step => step.key).indexOf(activeStep.key)
+    if (idx + 1 <= STEPS.length - 1) {
+      this.setState({ activeStep: STEPS[idx + 1] })
+    }
+  }
+
+  goPrevStep = () => {
+    const { activeStep } = this.state
+    const idx = STEPS.map(step => step.key).indexOf(activeStep.key)
+    if (idx - 1 >= 0) {
+      this.setState({ activeStep: STEPS[idx - 1] })
+    }
+  }
+
+  onKeyPressed = e => {
+    console.log(e)
     // this.setState() {
     //   return {
     //     title: STEPS[].title++, //how do we ++ with the STEPS array?
@@ -38,37 +47,6 @@ class App extends Component {
     //   }
     // }
   }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Fragment>
-            <h2>{this.state.activeStep.title}</h2>
-            <p>{this.state.activeStep.subTitle}</p>
-          </Fragment>
-        </header>
-        <LeftArrow onClick={this.goPrevStep} title="Previous" />
-        <RightArrow onClick={this.goNextStep} title="Next" />
-      </div>
-    );
-  }
-
-  goNextStep() {
-    const { activeStep } = this.state;
-    const idx = STEPS.map(step => step.key).indexOf(activeStep.key);
-    if (idx + 1 <= STEPS.length - 1) {
-      this.setState({ activeStep: STEPS[idx + 1] });
-    }
-  }
-
-  goPrevStep() {
-    const { activeStep } = this.state;
-    const idx = STEPS.map(step => step.key).indexOf(activeStep.key);
-    if (idx - 1 >= 0) {
-      this.setState({ activeStep: STEPS[idx - 1] });
-    }
-  }
 }
 
-export default App;
+export default App
