@@ -1,0 +1,10 @@
+.left-arrow-img {
+  height: 2em;
+  width: auto;
+}
+
+.left-arrow-img:hover {
+  background-color: lightgray;
+  opacity: 0.8;
+  border-radius: 2px;
+}

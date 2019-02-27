@@ -47,9 +47,13 @@ class App extends Component {
             <h2>{this.state.activeStep.title}</h2>
             <p>{this.state.activeStep.subTitle}</p>
           </Fragment>
+          <div className="left-arrow">
+            <LeftArrow onClick={this.goPrevStep} title="Previous" />
+          </div>
+          <div className="right-arrow">
+            <RightArrow onClick={this.goNextStep} title="Next" />
+          </div>
         </header>
-        <LeftArrow onClick={this.goPrevStep} title="Previous" />
-        <RightArrow onClick={this.goNextStep} title="Next" />
       </div>
     );
   }
