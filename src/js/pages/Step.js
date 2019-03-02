@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react"
-import { ChevronUp } from "react-feather"
+import { ChevronDown, ChevronUp } from "react-feather"
 import { AdditionalStepInformation } from "../components"
 
 class Step extends Component {
@@ -22,9 +22,11 @@ class Step extends Component {
             </Fragment>
             <div className="learn-more">
               {step.additionalInformation ? (
-                <div className="margin-1-t" onClick={this.showAdditionalInformation}>
+                <div className="margin-1-t" onClick={this.toggleAdditionalInformation}>
                   <p>
-                    <small>Learn More <ChevronUp /></small>
+                    <small>Learn More {
+                      showAdditionalInformation ? <ChevronDown /> : <ChevronUp />
+                    }</small>
                   </p>
                   <AdditionalStepInformation
                     show={showAdditionalInformation}
@@ -38,8 +40,9 @@ class Step extends Component {
     )
   }
 
-  showAdditionalInformation = () => {
-    this.setState({ showAdditionalInformation: true })
+  toggleAdditionalInformation = () => {
+    const { showAdditionalInformation } = this.state
+    this.setState({ showAdditionalInformation: !showAdditionalInformation })
   }
 }
 

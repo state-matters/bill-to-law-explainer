@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../styles/App.css"
 import { STEPS } from "../config"
-import { LeftArrow, RightArrow } from "./components"
+import { Arrow } from "./components"
 import { Step } from "./pages"
 
 class App extends Component {
@@ -15,7 +15,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LeftArrow handleOnClick={this.changeStep.bind(this, false)} />
+        <Arrow
+          direction="left"
+          handleOnClick={this.changeStep.bind(this, false)}
+        />
         {STEPS.map((step, idx) => (
           <div
             className={this.getStepClass(step, idx)}
@@ -27,7 +30,10 @@ class App extends Component {
             />
           </div>
         ))}
-        <RightArrow handleOnClick={this.changeStep.bind(this, true)} />
+        <Arrow
+          direction="right"
+          handleOnClick={this.changeStep.bind(this, true)}
+        />
       </div>
     )
   }
