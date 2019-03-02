@@ -23,7 +23,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: STEPS[0]
+      activeStep: STEPS[0],
+      goneThroughHouse: false,
+      goneThroughSenate: false
     };
     this.goNextStep = this.goNextStep.bind(this);
     this.goPrevStep = this.goPrevStep.bind(this);
