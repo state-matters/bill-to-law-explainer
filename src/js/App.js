@@ -15,27 +15,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LeftArrow onClick={this.goPrevStep} title="Previous" />
-        <Step step={this.state.activeStep} handleOnKeyDown={this.onKeyPressed} />
-        <RightArrow onClick={this.goNextStep} title="Next" />
+        <LeftArrow handleOnClick={this.changeStep.bind(this, false)} />
+        {STEPS.map((step, idx) => (
+          <div
+            className={this.getStepClass(step, idx)}
+            key={idx}
+          >
+            <Step
+              handleOnKeyDown={this.onKeyPressed}
+              step={step}
+            />
+          </div>
+        ))}
+        <RightArrow handleOnClick={this.changeStep.bind(this, true)} />
       </div>
     )
   }
 
-  goNextStep = () => {
+  changeStep = increase => {
     const { activeStep } = this.state
     const idx = STEPS.map(step => step.key).indexOf(activeStep.key)
-    if (idx + 1 <= STEPS.length - 1) {
-      this.setState({ activeStep: STEPS[idx + 1] })
+    const nextStep = increase ? STEPS[idx + 1] : STEPS[idx - 1]
+    if (nextStep) {
+      this.setState({ activeStep: nextStep })
     }
   }
 
-  goPrevStep = () => {
+  getStepClass = (step, idx) => {
     const { activeStep } = this.state
-    const idx = STEPS.map(step => step.key).indexOf(activeStep.key)
-    if (idx - 1 >= 0) {
-      this.setState({ activeStep: STEPS[idx - 1] })
+    if (step.key === activeStep.key) {
+      return "active-step"
     }
+    const activeIdx = STEPS.map(step => step.key).indexOf(activeStep.key)
+    return idx > activeIdx ? "future-step" : "past-step"
   }
 
   onKeyPressed = e => {
