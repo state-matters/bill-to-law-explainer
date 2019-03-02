@@ -4,7 +4,7 @@
 }
 
 .App-base {
-  background-color: #282c34;
+  background-color: #1f1d1d;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
 }
 
 .App-house {
-  background-color: orange;
+  background-color: #f17e5f;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@
 }
 
 .App-senate {
-  background-color: #666;
+  background-color: #342e5e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
