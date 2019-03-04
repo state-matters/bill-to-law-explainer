@@ -15,21 +15,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Arrow
-          show={this.getStepIdx() > 0}
-          direction="left"
-          handleOnClick={this.changeStep.bind(this, false)}
-        />
+        {this.getStepIdx() &&
+          <Arrow
+            direction="left"
+            handleOnClick={this.changeStep.bind(this, false)}
+          />}
         {STEPS.map((step, idx) => (
           <div className={this.getStepClass(step, idx)} key={idx}>
             <Step handleOnKeyDown={this.onKeyPressed} step={step} />
           </div>
         ))}
-        <Arrow
-          show={this.getStepIdx() < STEPS.length - 1}
-          direction="right"
-          handleOnClick={this.changeStep.bind(this, true)}
-        />
+        {this.getStepIdx() < STEPS.length - 1 &&
+          <Arrow
+            show={this.getStepIdx() < STEPS.length - 1}
+            direction="right"
+            handleOnClick={this.changeStep.bind(this, true)}
+          />
+        }
       </div>
     );
   }
@@ -55,7 +57,6 @@ class App extends Component {
   };
 
   onKeyPressed = e => {
-    console.log(e);
     // this.setState() {
     //   return {
     //     title: STEPS[].title++, //how do we ++ with the STEPS array?
@@ -66,3 +67,4 @@ class App extends Component {
 }
 
 export default App;
+
