@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.getStepIdx() !== BUTTON_STEP && this.getStepIdx() && (
+        {this.getStepIdx() !== BUTTON_STEP && this.getStepIdx() !== 0 && (
           <Arrow
             direction="left"
             handleOnClick={this.changeStep.bind(this, false)}
@@ -44,7 +44,6 @@ class App extends Component {
             <Button
               title="Take your bill to the Senate!"
               handleOnClick={this.onButtonClick.bind(this, "SENATE")}
-              //handleOnClick={this.onButtonClick.bind(this, true)}
             />
             <Button
               title="Take your bill to the House!"
@@ -67,8 +66,6 @@ class App extends Component {
   };
 
   getStepIdx = () => {
-    console.log(this.state.steps);
-    console.log(this.state.activeStep);
     return this.state.steps
       .map(step => step.key)
       .indexOf(this.state.activeStep.key);
@@ -85,14 +82,9 @@ class App extends Component {
   };
 
   onButtonClick = nameOfButtonClicked => {
-    console.log("nameOfButtonClicked", nameOfButtonClicked);
-    console.log("Senate button clicked");
     const earlySteps = STEPS.slice(0, 3);
-    console.log("earlySteps", earlySteps);
     const houseSteps = STEPS.slice(3, 6);
-    console.log("houseSteps", houseSteps);
     const senateSteps = STEPS.slice(6, 9);
-    console.log("senateSteps", senateSteps);
 
     let stepProcess = [];
 
