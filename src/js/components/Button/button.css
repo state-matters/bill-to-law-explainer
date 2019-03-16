@@ -1,0 +1,12 @@
+.button {
+  height: 2em;
+  fontsize: 1.5em;
+  borderradius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  --color: red;
+}
+
+.button:hover {
+  color: var(--color);
+}

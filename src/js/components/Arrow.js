@@ -1,5 +1,5 @@
-import React from "react"
-import { ChevronLeft, ChevronRight } from "react-feather"
+import React from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
 
 export function Arrow({ direction, handleOnClick }) {
   const style = {
@@ -10,23 +10,16 @@ export function Arrow({ direction, handleOnClick }) {
     color: "#fff",
     cursor: "pointer",
     zIndex: 999
-  }
+  };
 
-  style[direction] = 0
+  style[direction] = 0;
 
-  return (
-    direction === "right" ? (
-      <ChevronRight
-        onClick={handleOnClick}
-        style={style}
-      />
-    ) : (
-      <ChevronLeft
-        onClick={handleOnClick}
-        style={style}
-      />
-    )
-  )
+  return direction === "right" ? (
+    <ChevronRight onClick={handleOnClick} style={style} />
+  ) : (
+      <ChevronLeft onClick={handleOnClick} style={style} />
+    );
 }
 
-export default Arrow
+
+export default Arrow;
